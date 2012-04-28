@@ -24,6 +24,11 @@ class Phonet(object):
                 rule, replacement = spaces.split(line)
                 self.rules.append((Rule(rule), replacement))
 
+    def as_json(self):
+        data = self.opt
+        data['rules'] = [(r.as_json(), v) for r, v  in self.rules]
+        return data
+
 
 class Rule(object):
 
@@ -38,6 +43,15 @@ class Rule(object):
     def __repr__(self):
         return "<Rule minus:%i ending:%s again:%s priority:%i '%s'>" % (
                 self.minus, self.ending, self.again, self.priority, self.txt)
+
+    def as_json(self):
+        return {
+            "text": self.txt,
+            "minus": self.minus,
+            "ending": self.ending,
+            "again": self.again,
+            "priority": self.priority
+                }
 
     def parse(self, txt):
         if txt[-1] in [str(i) for i in range(10)]:

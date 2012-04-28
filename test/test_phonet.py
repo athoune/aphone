@@ -34,5 +34,4 @@ class PhonetTest(unittest.TestCase):
 
     def testRead(self):
         p = Phonet(StringIO(sample))
-        print p.opt
-        print p.rules
+        print p.as_json()
