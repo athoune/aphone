@@ -35,10 +35,10 @@ class Rule(object):
     def __init__(self, txt):
         self.minus = 0
         self.ending = False
+        self.starting = False
         self.again = False
         self.priority = 0
         self.parse(txt)
-        print txt, self.minus, self.ending, self.again
 
     def __repr__(self):
         return "<Rule minus:%i ending:%s again:%s priority:%i '%s'>" % (
@@ -49,11 +49,15 @@ class Rule(object):
             "text": self.txt,
             "minus": self.minus,
             "ending": self.ending,
+            "starting": self.starting,
             "again": self.again,
             "priority": self.priority
                 }
 
     def parse(self, txt):
+        if len(txt) == 0:
+            self.txt = ''
+            return
         if txt[-1] in [str(i) for i in range(10)]:
             self.priority = int(txt[-1])
             self.parse(txt[:-1])
@@ -64,6 +68,10 @@ class Rule(object):
             return
         if txt[-1] == '$':
             self.ending = True
+            self.parse(txt[:-1])
+            return
+        if txt[-1] == '^':
+            self.starting = True
             self.parse(txt[:-1])
             return
         if txt[-1] == '<':
