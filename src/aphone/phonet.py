@@ -21,7 +21,7 @@ class Phonet(object):
             if not opt:
                 state = 'rules'
             if state == 'rules':
-                rule, replacement = spaces.split(line)
+                rule, replacement = spaces.split(line)[:2]
                 self.rules.append((Rule(rule), replacement))
 
     def as_json(self):
