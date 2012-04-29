@@ -6,7 +6,7 @@ class Reader(object):
 
     def __iter__(self):
         for line in self.data:
-            if len(line) == 1:
+            if len(line) <= 1:
                 continue
             if line[0] == '#':
                 continue

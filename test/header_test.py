@@ -6,7 +6,7 @@ from StringIO import StringIO
 
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__) + '/../src'))
 
-from aphone import Header
+from aphone import Header, Reader
 
 
 class HeaderTest(unittest.TestCase):
@@ -19,3 +19,12 @@ special ' -*-  . -*- - -*-
 soundslike fr"""
         h = Header(StringIO(txt))
         self.assertEqual('fr', h.name)
+
+    def test_blank(self):
+        txt = """pim
+pam
+
+poum
+"""
+        r = Reader(StringIO(txt))
+        self.assertEqual(['pim', 'pam', 'poum'], list(r))
