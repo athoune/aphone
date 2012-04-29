@@ -21,7 +21,8 @@ Or from source:
 Usage
 -----
 
-Download a dictionnary from [ftp://ftp.gnu.org/gnu/aspell/dict/0index.html] or find it in your Linux.
+Download a dictionnary from [Aspell](ftp://ftp.gnu.org/gnu/aspell/dict/0index.html)
+or find it in your Linux. In Ubuntu, they are in _/usr/lib/aspell/_ folder.
 
 Now, you are looking a file like _fr.dat_ if you are looking for fr dictionnary.
 
