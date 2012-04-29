@@ -5,7 +5,7 @@ from setuptools import setup
 # http://pypi.python.org/pypi?%3Aaction=list_classifiers
 
 setup(name='aphone',
-    version='0.0.2',
+    version='0.0.3',
     package_dir={'': 'src'},
     url='http://github.com/athoune/aphone',
     #scripts=[],
