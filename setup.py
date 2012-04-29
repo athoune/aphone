@@ -5,7 +5,7 @@ from setuptools import setup
 # http://pypi.python.org/pypi?%3Aaction=list_classifiers
 
 setup(name='aphone',
-    version='0.0.1',
+    version='0.0.2',
     package_dir={'': 'src'},
     url='http://github.com/athoune/aphone',
     #scripts=[],
@@ -29,6 +29,7 @@ First step to build phonetic filter in any languages.
     author="Mathieu Lecarme",
     packages=['aphone'],
     keywords=["phonetic", "aspell"],
+    scripts=['bin/aphone'],
     zip_safe=True,
     install_requires=[],
 )
