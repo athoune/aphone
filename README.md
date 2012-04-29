@@ -6,6 +6,29 @@ Now you can implement your automat with any language, any variants.
 
 Soon, a Java Lucene Filter, python, cython, ruby, javascript…
 
+Install
+-------
+
+From pypi:
+
+    sudo pip install aphone
+
+Or from source:
+
+    python setup.py build
+    sudo python setup.py install
+
+Usage
+-----
+
+Download a dictionnary from [ftp://ftp.gnu.org/gnu/aspell/dict/0index.html] or find it in your Linux.
+
+Now, you are looking a file like _fr.dat_ if you are looking for fr dictionnary.
+
+    aphone path/to/fr.dat
+
+It will print phonetic rules as a json.
+
 Licence
 -------
 
