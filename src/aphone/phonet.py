@@ -28,6 +28,8 @@ class Phonet(object):
         data = self.opt
         rules = {}
         for r, v  in self.rules:
+            if r.txt == "":
+                continue  # WTF!
             key = r.txt[0]
             if key not in rules:
                 rules[key] = []
@@ -39,21 +41,24 @@ class Phonet(object):
 class Rule(object):
 
     def __init__(self, txt):
+        self.raw = txt
         self.minus = 0  # -
         self.ending = False  # $
         self.starting = False  # ^
         self.again = False  # <
         self.separately = False  # ^^
+        self.alternates = ""
         self.priority = 5
         self.parse(txt)
 
-    def __repr__(self):
-        return "<Rule minus:%i ending:%s again:%s priority:%i '%s'>" % (
+    def __unicode__(self):
+        return u"<Rule minus:%i ending:%s again:%s priority:%i '%u'>" % (
                 self.minus, self.ending, self.again, self.priority, self.txt)
 
     def as_json(self):
         return {
             "text": self.txt,
+            "alternates": self.alternates,
             "minus": self.minus,
             "ending": self.ending,
             "starting": self.starting,
@@ -88,5 +93,11 @@ class Rule(object):
         if txt[-1] == '<':
             self.again = True
             self.parse(txt[:-1])
+            return
+        if txt[-1] == ')':
+            opening = txt.find('(')
+            print txt, txt[:opening], txt[opening + 1:-1]
+            self.txt = txt[:opening]
+            self.alternates = txt[opening + 1:-1]
             return
         self.txt = txt
