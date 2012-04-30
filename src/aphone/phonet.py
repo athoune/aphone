@@ -33,11 +33,12 @@ class Phonet(object):
 class Rule(object):
 
     def __init__(self, txt):
-        self.minus = 0
-        self.ending = False
-        self.starting = False
-        self.again = False
-        self.priority = 0
+        self.minus = 0  # -
+        self.ending = False  # $
+        self.starting = False  # ^
+        self.again = False  # <
+        self.separately = False  # ^^
+        self.priority = 5
         self.parse(txt)
 
     def __repr__(self):
