@@ -26,7 +26,13 @@ class Phonet(object):
 
     def as_json(self):
         data = self.opt
-        data['rules'] = [(r.as_json(), v) for r, v  in self.rules]
+        rules = {}
+        for r, v  in self.rules:
+            key = r.txt[0]
+            if key not in rules:
+                rules[key] = []
+            rules[key].append((r.as_json(), v))
+        data['rules'] = rules
         return data
 
 
@@ -72,7 +78,11 @@ class Rule(object):
             self.parse(txt[:-1])
             return
         if txt[-1] == '^':
-            self.starting = True
+            if self.starting:  # ^^
+                self.starting = False
+                self.separately = True
+            else:
+                self.starting = True
             self.parse(txt[:-1])
             return
         if txt[-1] == '<':
