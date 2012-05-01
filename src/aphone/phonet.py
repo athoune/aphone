@@ -33,7 +33,8 @@ class Phonet(object):
             key = r.txt[0]
             if key not in rules:
                 rules[key] = []
-            rules[key].append((r.as_json(), v))
+            r.replace = v
+            rules[key].append(r.as_json())
         data['rules'] = rules
         return data
 
@@ -49,6 +50,7 @@ class Rule(object):
         self.separately = False  # ^^
         self.alternates = ""
         self.priority = 5
+        self.replace = ""
         self.parse(txt)
 
     def __unicode__(self):
@@ -63,7 +65,8 @@ class Rule(object):
             "ending": self.ending,
             "starting": self.starting,
             "again": self.again,
-            "priority": self.priority
+            "priority": self.priority,
+            "replace": self.replace
                 }
 
     def parse(self, txt):
