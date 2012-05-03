@@ -99,7 +99,6 @@ class Rule(object):
             return
         if txt[-1] == ')':
             opening = txt.find('(')
-            print txt, txt[:opening], txt[opening + 1:-1]
             self.txt = txt[:opening]
             self.alternates = txt[opening + 1:-1]
             return
