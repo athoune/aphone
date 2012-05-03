@@ -66,7 +66,8 @@ class Rule(object):
             "starting": self.starting,
             "again": self.again,
             "priority": self.priority,
-            "replace": self.replace
+            "replace": self.replace,
+            "raw": self.raw
                 }
 
     def parse(self, txt):
