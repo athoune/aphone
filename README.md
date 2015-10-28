@@ -24,6 +24,11 @@ Usage
 Download a dictionnary from [Aspell](ftp://ftp.gnu.org/gnu/aspell/dict/0index.html)
 or find it in your Linux. In Ubuntu, they are in _/usr/lib/aspell/_ folder.
 
+On OSX, macbrew will do the job:
+
+    brew install aspell --with-lang-fr
+
+
 Now, you are looking a file like _fr.dat_ if you are looking for fr dictionnary.
 
     aphone path/to/fr.dat
