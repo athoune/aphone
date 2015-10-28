@@ -40,6 +40,34 @@ class Phonet(object):
         data['rules'] = rules
         return data
 
+    def parse(self, txt):
+        txt = txt.upper()
+        prefixes = defaultdict(list)
+        for r, v in self.rules:
+            k = r.txt[0]
+            if k != "":
+                prefixes[k[0]].append((r, v))
+        result = []
+        while txt:
+            i = txt[0]
+            if i not in prefixes:
+                result.append(i)
+                txt = txt[1:]
+            else:
+                nothing = True
+                for r, v in prefixes[i]:
+                    if r.match(txt):
+                        if v != "_":
+                            result.append(v)
+                        txt = txt[len(r.raw):]
+                        nothing = False
+                        continue
+                if nothing:
+                    result.append(i)
+                    txt = txt[1:]
+
+        return "".join(result)
+
 
 class Rule(object):
 
@@ -106,3 +134,15 @@ class Rule(object):
             self.alternates = txt[opening + 1:-1]
             return
         self.txt = txt
+
+    def match(self, txt):
+        s = len(self.txt)
+        if len(txt) < s:
+            return False
+        if txt[:s] != self.txt:
+            return False
+        if len(self.alternates) and txt[s] not in self.alternates:
+            return False
+        if self.ending and len(txt) > s:
+            return False
+        return True

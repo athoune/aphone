@@ -14,4 +14,7 @@ header = Header(open(sys.argv[1]))
 ph = "%s/%s_phonet.dat" % (os.path.dirname(sys.argv[1]), header.soundslike)
 phonet = Phonet(codecs.open(ph, 'r', header.charset))
 
-print json.dumps(phonet.as_json(), indent=2)
+if len(sys.argv) == 2:
+    print(json.dumps(phonet.as_json(), indent=2))
+elif len(sys.argv) == 3:
+    print(phonet.parse(sys.argv[2]))
