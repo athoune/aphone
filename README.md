@@ -30,6 +30,15 @@ Now, you are looking a file like _fr.dat_ if you are looking for fr dictionnary.
 
 It will print phonetic rules as a json.
 
+You can test one word:
+
+    aphone path/to/fr.dat carotte
+
+It answers
+
+    KAROTE
+
+
 Licence
 -------
 
