@@ -47,6 +47,8 @@ class Phonet(object):
             k = r.txt[0]
             if k != "":
                 prefixes[k[0]].append((r, v))
+        for v in prefixes.values():
+            v.sort(sort_rules)
         result = []
         while txt:
             i = txt[0]
@@ -67,6 +69,14 @@ class Phonet(object):
                     txt = txt[1:]
 
         return "".join(result)
+
+
+def sort_rules(aa, bb):
+    a = aa[0]
+    b = bb[0]
+    if len(a.txt) != len(b.txt):
+        return len(a.txt) > len(b.txt)
+    return a.priority > b.priority
 
 
 class Rule(object):
