@@ -57,7 +57,7 @@ class Rule(object):
 
     def __unicode__(self):
         return u"<Rule minus:%i ending:%s again:%s priority:%i '%u'>" % (
-                self.minus, self.ending, self.again, self.priority, self.txt)
+            self.minus, self.ending, self.again, self.priority, self.txt)
 
     def as_json(self):
         return {
