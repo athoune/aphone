@@ -1,5 +1,6 @@
 import re
 from aphone import Reader
+from collections import defaultdict
 
 
 class Phonet(object):
@@ -26,13 +27,11 @@ class Phonet(object):
 
     def as_json(self):
         data = self.opt
-        rules = {}
-        for r, v  in self.rules:
+        rules = defaultdict(list)
+        for r, v in self.rules:
             if r.txt == "":
                 continue  # WTF!
             key = r.txt[0]
-            if key not in rules:
-                rules[key] = []
             r.replace = v
             rules[key].append(r.as_json())
         data['rules'] = rules
