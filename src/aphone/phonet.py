@@ -155,7 +155,8 @@ class Rule(object):
             return False
         if txt[:s] != self.txt:
             return False
-        if len(self.alternates) and txt[s] not in self.alternates:
+        if len(self.alternates) and len(txt) > s \
+                and txt[s] not in self.alternates:
             return False
         if self.ending and len(txt) > s:
             return False
