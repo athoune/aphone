@@ -3,6 +3,9 @@ from aphone import Reader
 from collections import defaultdict
 
 
+RANGE10 = [str(i) for i in range(10)]
+
+
 class Phonet(object):
 
     def __init__(self, data):
@@ -67,13 +70,13 @@ class Rule(object):
             "priority": self.priority,
             "replace": self.replace,
             "raw": self.raw
-                }
+        }
 
     def parse(self, txt):
         if len(txt) == 0:
             self.txt = ''
             return
-        if txt[-1] in [str(i) for i in range(10)]:
+        if txt[-1] in RANGE10:
             self.priority = int(txt[-1])
             self.parse(txt[:-1])
             return
