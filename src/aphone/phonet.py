@@ -50,7 +50,9 @@ class Phonet(object):
         for v in prefixes.values():
             v.sort(sort_rules)
         result = []
+        step = 0
         while txt:
+            step += 1
             i = txt[0]
             if i not in prefixes:
                 result.append(i)
@@ -58,7 +60,7 @@ class Phonet(object):
             else:
                 nothing = True
                 for r, v in prefixes[i]:
-                    if r.match(txt):
+                    if r.match(txt, step == 1):
                         if v != "_":
                             result.append(v)
                         txt = txt[len(r.raw):]
@@ -145,7 +147,9 @@ class Rule(object):
             return
         self.txt = txt
 
-    def match(self, txt):
+    def match(self, txt, first):
+        if self.starting and not first:
+            return False
         s = len(self.txt)
         if len(txt) < s:
             return False
