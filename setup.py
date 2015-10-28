@@ -29,7 +29,7 @@ First step to build phonetic filter in any languages.
     author="Mathieu Lecarme",
     packages=['aphone'],
     keywords=["phonetic", "aspell"],
-    scripts=['bin/aphone'],
+    scripts=['script/aphone'],
     zip_safe=True,
     install_requires=[],
 )
