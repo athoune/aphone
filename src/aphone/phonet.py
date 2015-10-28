@@ -63,7 +63,7 @@ class Phonet(object):
                     if r.match(txt, step == 1):
                         if v != "_":
                             result.append(v)
-                        txt = txt[len(r.raw):]
+                        txt = txt[len(r.txt):]
                         nothing = False
                         continue
                 if nothing:
